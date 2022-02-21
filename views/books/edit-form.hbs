@@ -1,0 +1,24 @@
+
+
+<h3>Formulario para edit Libros</h3>
+
+<form method="POST" action="/books/{{oneBook._id}}/edit">
+
+  <label for="title">Title</label>
+  <input type="text" name="title" value="{{oneBook.title}}">
+
+  <br>
+
+  <label for="description">Description</label>
+  <input type="text" name="description" value="{{oneBook.description}}">
+
+  <br>
+
+  <label for="author">Author</label>
+  <input type="text" name="author" value="{{oneBook.author}}">
+
+  <br>
+
+  <button>Actualizar Libro</button>
+
+</form>

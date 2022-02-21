@@ -1,0 +1,21 @@
+
+<div class="card">
+  <div class="card-header">
+    <h4>Title: {{oneBook.title}}</h4>
+  </div>
+  <div class="card-body">
+    <p>Description: {{oneBook.description}}</p>
+    <p>Author: {{oneBook.author}}</p>
+
+    
+    <a href="/books/{{oneBook._id}}/edit">
+      {{!-- GET --}}
+      <button class="btn btn-outline-warning">Actualizar</button>
+    </a>
+
+    <form action="/books/{{oneBook._id}}/delete" method="POST">
+      {{!-- POST --}}
+      <button class="btn btn-outline-danger">Borrar</button>
+    </form>
+  </div>
+</div>

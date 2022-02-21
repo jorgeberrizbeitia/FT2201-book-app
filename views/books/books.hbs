@@ -1,0 +1,9 @@
+<h3>La Lista de mis libros</h3>
+
+<div class="list-group">
+  {{#each allBooks}}
+
+      <a class="list-group-item list-group-item-action" href="/books/{{this._id}}/details">{{this.title}}</a>
+
+  {{/each}}
+</div>

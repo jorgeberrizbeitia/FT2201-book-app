@@ -5,8 +5,10 @@
   </div>
   <div class="card-body">
     <p>Description: {{oneBook.description}}</p>
-    <p>Author: {{oneBook.author.name}} de {{oneBook.author.country}} nacido en {{oneBook.author.yearBorn}}</p>
-
+    {{!-- <p>Author: {{oneBook.author.name}} de {{oneBook.author.country}} nacido en {{oneBook.author.yearBorn}}</p> --}}
+    {{#each oneBook.author}}
+      <p>Author: {{this.name}} de {{this.country}} nacido en {{this.yearBorn}}</p>
+    {{/each}}
     
     <a href="/books/{{oneBook._id}}/edit">
       {{!-- GET --}}

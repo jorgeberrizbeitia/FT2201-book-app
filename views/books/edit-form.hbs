@@ -15,7 +15,15 @@
   <br>
 
   <label for="author">Author</label>
-  <input type="text" name="author" value="{{oneBook.author}}">
+    <select name="author">
+
+        {{#each allAuthors}}
+
+          <option value="{{this._id}}">{{this.name}}</option>
+
+        {{/each}}
+
+    </select>
 
   <br>
 

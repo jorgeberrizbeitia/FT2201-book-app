@@ -27,8 +27,10 @@ router.get("/:id/details", (req, res, next) => {
 
   // necesitamos buscar el libro en de BD
   BookModel.findById(id)
+  .populate("author")
   .then((oneBook) => {
     // renderizar el libro al usuario
+    console.log(oneBook)
     res.render("books/book-details.hbs", {oneBook})
   })
   .catch((err) => {
@@ -53,8 +55,6 @@ router.get("/create", (req, res, next) => {
 // POST "/books/create" => agregar el nuevo libro a la BD
 router.post("/create", (req, res, next) => {
 
-  console.log(req.body)
-
   BookModel.create({
     title: req.body.title,
     description: req.body.description,
@@ -73,18 +73,44 @@ router.post("/create", (req, res, next) => {
 })
 
 // GET "/books/:id/edit" => renderizar el formulario para editar
-router.get("/:id/edit", (req, res, next) => {
+// router.get("/:id/edit", (req, res, next) => {
 
-  const { id } = req.params
+//   const { id } = req.params
+//   let oneBook;
 
-  BookModel.findById(id)
-  .then((oneBook) => {
-    // pasamos el libro a la vista para el prellenado de los inputs
-    res.render("books/edit-form.hbs", {oneBook})
-  })
-  .catch((err) => {
+//   BookModel.findById(id)
+//   .then((oneBookParam) => {
+//     // pasamos el libro a la vista para el prellenado de los inputs
+//     oneBook = oneBookParam;
+//     return AuthorModel.find()
+//   })
+//   .then((allAuthors) => {
+//     res.render("books/edit-form.hbs", {oneBook, allAuthors})
+//   })
+//   .catch((err) => {
+//     next(err)
+//   })
+
+// })
+
+router.get("/:id/edit", async (req, res, next) => {
+
+  try {
+    const { id } = req.params;
+  
+    // el libro a editar
+    const oneBook = await BookModel.findById(id)
+  
+    // la lista de autores
+    const allAuthors = await AuthorModel.find()
+  
+    // renderizar la vista edit-form
+    res.render("books/edit-form.hbs", { oneBook, allAuthors })
+  }
+  catch(err) {
     next(err)
-  })
+  }
+
 
 })
 

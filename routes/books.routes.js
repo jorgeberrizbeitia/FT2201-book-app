@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const AuthorModel = require("../models/Author.model");
 const BookModel = require("../models/Book.model")
 
 // GET "/books" ruta para mostrar todos los libros al usuario
@@ -39,7 +40,13 @@ router.get("/:id/details", (req, res, next) => {
 // GET "/books/create" => renderizar el formulario de crear libro
 router.get("/create", (req, res, next) => {
 
-  res.render("books/create-form.hbs")
+  AuthorModel.find()
+  .then((allAuthors) => {
+    res.render("books/create-form.hbs", { allAuthors } )
+  })
+  .catch((err) => {
+    next(err)
+  })
 
 })
 

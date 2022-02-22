@@ -11,7 +11,18 @@
     <input type="text" name="description" class="form-control">
 
     <label for="author" class="col-form-label">Author</label>
-    <input type="text" name="author" class="form-control">
+    {{!-- <input type="text" name="author" class="form-control"> --}}
+    
+    <select name="author">
+
+        {{#each allAuthors}}
+
+          <option value="{{this._id}}">{{this.name}}</option>
+
+        {{/each}}
+
+    </select>
+
 
     <button class="btn btn-outline-success">Agregar Libro</button>
   </div>  
